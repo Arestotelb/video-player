@@ -48,27 +48,24 @@
 <body>
     <div class="player">
         <video id="videoPlayer" controls>
-            <source id="videoSource" src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-            Your browser does not support the video tag.
+            <source id="videoSource" src="" type="video/mp4">
+            Ваш браузер не поддерживает тег видео.
         </video>
-        <div class="controls">
-            <input type="text" id="videoURL" placeholder="Вставьте ссылку на видео" style="flex-grow: 1; margin-right: 10px; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
-            <button onclick="changeVideo()">Загрузить видео</button>
-        </div>
     </div>
 
     <script>
-        function changeVideo() {
-            const videoURL = document.getElementById('videoURL').value;
-            const videoSource = document.getElementById('videoSource');
-            const videoPlayer = document.getElementById('videoPlayer');
-            if (videoURL) {
-                videoSource.src = videoURL;
-                videoPlayer.load();
-            } else {
-                alert("Пожалуйста, введите URL видео.");
-            }
+        // Функция для получения параметров из URL
+        function getVideoUrl() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('video') || 'https://www.w3schools.com/html/mov_bbb.mp4'; // Ссылка по умолчанию
         }
+
+        // Установка видео URL
+        const videoURL = getVideoUrl();
+        const videoSource = document.getElementById('videoSource');
+        const videoPlayer = document.getElementById('videoPlayer');
+        videoSource.src = videoURL;
+        videoPlayer.load();
     </script>
 </body>
 </html>
