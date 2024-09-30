@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Video Player</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .player {
+            max-width: 800px;
+            width: 100%;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .player video {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .controls button {
+            background-color: #ff5722;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .controls button:hover {
+            background-color: #e64a19;
+        }
+    </style>
+</head>
+<body>
+    <div class="player">
+        <video id="videoPlayer" controls>
+            <source id="videoSource" src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="controls">
+            <input type="text" id="videoURL" placeholder="Вставьте ссылку на видео" style="flex-grow: 1; margin-right: 10px; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+            <button onclick="changeVideo()">Загрузить видео</button>
+        </div>
+    </div>
+
+    <script>
+        function changeVideo() {
+            const videoURL = document.getElementById('videoURL').value;
+            const videoSource = document.getElementById('videoSource');
+            const videoPlayer = document.getElementById('videoPlayer');
+            if (videoURL) {
+                videoSource.src = videoURL;
+                videoPlayer.load();
+            } else {
+                alert("Пожалуйста, введите URL видео.");
+            }
+        }
+    </script>
+</body>
+</html>
